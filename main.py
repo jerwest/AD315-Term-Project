@@ -6,7 +6,7 @@ from Chasm import Chasm
 from Monsters import Monsters
 from Jump import Jump
 
-items = ["a sword","chainmail","rope","gold"]
+items = ["a sword","chainmail","rope","Ogre gold"]
 monsters = ["an ogre"]
 stats = []
 treasure = []
@@ -15,9 +15,9 @@ rooms = [
     {"south":0, "north":2, "description":"Hallway"},
     {"south":1, "west":3, "description":"Room #2","items":[0]},
     {"east":2, "north":4, "description":"Room #3","items":[1]},
-    {"south":3, "east":5, "description":"Room #4"},
+    {"south":3, "east":5, "description":"Room #4","items":[2]},
     {"west":4, "north":6, "description":"Room #5"},
-    {"south":5,"description":"Room #6","items":[2]},
+    {"south":5,"description":"Room #6"},
 ]
  
 def main():
@@ -90,10 +90,37 @@ def main():
                 else:
                     time.sleep(1)
                     roll = input("\nMust type 'roll'. ").lower()
+        elif (rooms[current_room]["description"]) == "Room #4":
+            time.sleep(1)
+            print("\nSurprise attack!")
+            time.sleep(2)
+            print("\nOgre!!!")
+            Monsters.ogre()
+            time.sleep(2)
+            print("\nThis isn't your ordinary Ogre though... he's a nerd Ogre.")
+            time.sleep(2)
+            print("\nHe wants to know what 101010 (binary) is when converted to decimal.")
+            time.sleep(2)
+            print("\nAnswer carefully, even though he's a nerd Ogre, he's ferocious and will give damage.")
+            time.sleep(2)
+            decimalAnswer = input("\nWhat is answer? > ")
+            if decimalAnswer == "42":
+                time.sleep(2)
+                print("\nCongrats... you answered correctly.")
+                time.sleep(2)
+                print("\nContinue using compass directions")
+            else:
+                time.sleep(2)
+                print("\nWrong Answer!")
+                stats = Stats.minusHealth(stats, 2)
+                time.sleep(2)
+                print("\nYou lose '2' health points... your health is now:", stats[0])
+                time.sleep(2)
+                print("\nContinue using compass directions")
+                break
+
             
             
-
-
         #user action loop
         while True: 
             userInput = input("> ").lower()
