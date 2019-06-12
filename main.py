@@ -84,6 +84,8 @@ def main():
                     else:
                         time.sleep(1)
                         print("\nCongrats! Your combined dice roll plus agility is enough to clear the pit.")
+                        time.sleep(2)
+                        print("\nContinue using compass directions")
                     break
                 else:
                     time.sleep(1)
