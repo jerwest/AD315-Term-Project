@@ -23,16 +23,16 @@ def main():
     current_room = 0 
     inventory = []
     
-##    GameIntro.screenWarning()
-##    GameIntro.gameTitle()
+    GameIntro.screenWarning()
+    GameIntro.gameTitle()
     stats = Chasm.chasmStart()
 
     time.sleep(1)
-##    print("\nThe earth beneath your feet begins to shake as bits of dirt crumble down the sides of the")
-##    print("chasm around you and then, before you, on the chasm wall, a door appears.")
-##    time.sleep(4)
-##    print("\n'You must type 'north' to enter the door, that is the only way to escape.' says the Voice.")
-##    time.sleep(3)
+    print("\nThe earth beneath your feet begins to shake as bits of dirt crumble down the sides of the")
+    print("chasm around you and then, before you, on the chasm wall, a door appears.")
+    time.sleep(4)
+    print("\n'You must type 'north' to enter the door, that is the only way to escape.' says the Voice.")
+    time.sleep(3)
     accept = input("\nDo you accept? 'Yes' or 'No'? ").lower()
     time.sleep(1)
     while 1 == 1:
