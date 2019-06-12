@@ -4,6 +4,7 @@ from GameIntro import GameIntro
 from Stats import Stats
 from Chasm import Chasm
 from Monsters import Monsters
+from Jump import Jump
 
 items = ["a sword","chainmail","rope","gold"]
 monsters = ["an ogre"]
@@ -11,11 +12,12 @@ stats = []
 treasure = []
 rooms = [
     {"north":1, "description":"The Chasm - Start Room #1"},
-    {"south":0, "west":2, "description":"Room #2","items":[0]},
-    {"east":1, "north":3, "description":"Room #3","items":[1]},
-    {"south":2, "east":4, "description":"Room #4"},
-    {"west":3, "north":5, "description":"Room #5"},
-    {"south":4,"description":"Room #6","items":[2]},
+    {"south":0, "north":2, "description":"Hallway"},
+    {"south":1, "west":3, "description":"Room #2","items":[0]},
+    {"east":2, "north":4, "description":"Room #3","items":[1]},
+    {"south":3, "east":5, "description":"Room #4"},
+    {"west":4, "north":6, "description":"Room #5"},
+    {"south":5,"description":"Room #6","items":[2]},
 ]
  
 def main():
@@ -60,10 +62,38 @@ def main():
     while True:
         print()
         print(rooms[current_room]["description"] + "\n")
+        if (rooms[current_room]["description"]) == "Hallway":
+            Jump.jumpPit()
+            roll = input("\nYou're deep into this already, there's no reason not to roll at all. Type 'Roll' > ").lower()
+            while 1 == 1:
+                if roll == "roll":
+                    diceTotal = Jump.totalOfDie()
+                    print("Dice total:", diceTotal)
+                    print("Agility:", stats[2])
+                    total = diceTotal + stats[2]
+                    print("Total:", total)
+                    if total < 31:
+                        time.sleep(1)
+                        print("\nD'oh! Your combined dice roll plus agility is not enough to clear the pit.")
+                        stats = Stats.minusHealth(stats, 5)
+                        time.sleep(2)
+                        print("\nYou lose '5' health points... your health is now:", stats[0])
+                        time.sleep(2)
+                        print("\nContinue using compass directions")
+                        break
+                    else:
+                        time.sleep(1)
+                        print("\nCongrats! Your combined dice roll plus agility is enough to clear the pit.")
+                    break
+                else:
+                    time.sleep(1)
+                    roll = input("\nMust type 'roll'. ").lower()
+            
+            
+
 
         #user action loop
         while True: 
-     
             userInput = input("> ").lower()
      
             if userInput == "quit":
@@ -76,8 +106,6 @@ def main():
                     print("You cannot move that way\n")
                 else:
                     current_room = new_room
-                    if current_room == "Room #2":
-                        print("test room2")
                     break
                 
             # search room
